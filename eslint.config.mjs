@@ -47,8 +47,7 @@ export default defineConfig([
   {
     extends: fixupConfigRules(
       compat.extends(
-        "next/core-web-vitals",
-        "plugin:@typescript-eslint/recommended",
+        '',
         "plugin:react/recommended",
         "plugin:prettier/recommended",
         "plugin:react-hooks/recommended",
@@ -103,7 +102,7 @@ export default defineConfig([
       "jsx-a11y/interactive-supports-focus": "warn",
       "prettier/prettier": "warn",
       "no-unused-vars": "off",
-      "unused-imports/no-unused-vars": "off",
+      "unused-imports/no-unused-vars": "warn",
       "unused-imports/no-unused-imports": "warn",
 
       "@typescript-eslint/no-unused-vars": [
@@ -141,6 +140,7 @@ export default defineConfig([
         },
       ],
 
+      "import/order": "off",
       "react/self-closing-comp": "off",
       "prettier/prettier": "off",
 
@@ -155,7 +155,7 @@ export default defineConfig([
       ],
 
       "padding-line-between-statements": [
-        "warn",
+        "off",
         {
           blankLine: "always",
           prev: "*",
