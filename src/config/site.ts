@@ -20,5 +20,9 @@ export const siteConfig = {
       label: "Suspense",
       href: "/suspense",
     },
+    {
+      label: "Parallel",
+      href: "/parallel",
+    },
   ],
 };
