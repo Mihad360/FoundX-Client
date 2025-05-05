@@ -15,6 +15,8 @@ import clsx from "clsx";
 import { siteConfig } from "../../config/site";
 import { Logo } from "../icons";
 import { ThemeSwitch } from "./theme-switch";
+import { Avatar } from "@heroui/avatar";
+import NavbarDropdown from "./NavbarDropdown";
 
 export const Navbar = () => {
   return (
@@ -50,6 +52,7 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
+          <NavbarDropdown></NavbarDropdown>
         </NavbarItem>
       </NavbarContent>
 
