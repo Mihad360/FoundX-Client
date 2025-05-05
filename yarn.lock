@@ -177,6 +177,21 @@
     "@react-types/button" "3.12.0"
     "@react-types/shared" "3.29.0"
 
+"@heroui/card@^2.2.18":
+  version "2.2.18"
+  resolved "https://registry.yarnpkg.com/@heroui/card/-/card-2.2.18.tgz#5cd33653dacbac0fbdcde8e7e105413a1080fc2b"
+  integrity sha512-fgvOfmeEz3ri9ft2P45ycclsC0AeJxQnZey2JuF6G8ou7IOKYEO0najuW6PDs9h50tY5TLWl1fU5S7WMUzjEpw==
+  dependencies:
+    "@heroui/react-utils" "2.1.10"
+    "@heroui/ripple" "2.2.14"
+    "@heroui/shared-utils" "2.1.9"
+    "@heroui/use-aria-button" "2.2.13"
+    "@react-aria/button" "3.13.0"
+    "@react-aria/focus" "3.20.2"
+    "@react-aria/interactions" "3.25.0"
+    "@react-aria/utils" "3.28.2"
+    "@react-types/shared" "3.29.0"
+
 "@heroui/code@2.2.14":
   version "2.2.14"
   resolved "https://registry.yarnpkg.com/@heroui/code/-/code-2.2.14.tgz#addc8db38aceceeb4dca5e17a082b8774a1e9b75"
@@ -335,6 +350,14 @@
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/@heroui/shared-utils/-/shared-utils-2.1.9.tgz#bcfc019250cb1d1c376f4e09ef0f3b8e0cb0ee67"
   integrity sha512-mM/Ep914cYMbw3T/b6+6loYhuNfzDaph76mzw/oIS05gw1Dhp9luCziSiIhqDGgzYck2d74oWTZlahyCsxf47w==
+
+"@heroui/skeleton@^2.2.12":
+  version "2.2.12"
+  resolved "https://registry.yarnpkg.com/@heroui/skeleton/-/skeleton-2.2.12.tgz#8ff50e4b5e3b20724ea6a5991e5824b3edd912df"
+  integrity sha512-HlRKMVLgMAfe9wX7BPhTN84Xu+SdJWCtmxLzBWUZVNpLZdjnu2lLOcbkzwo+84tSjsxbLP4tqBW8hdJnxTQVVA==
+  dependencies:
+    "@heroui/react-utils" "2.1.10"
+    "@heroui/shared-utils" "2.1.9"
 
 "@heroui/snippet@2.2.20":
   version "2.2.20"

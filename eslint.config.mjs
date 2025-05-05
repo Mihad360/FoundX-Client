@@ -47,7 +47,7 @@ export default defineConfig([
   {
     extends: fixupConfigRules(
       compat.extends(
-        '',
+        "",
         "plugin:react/recommended",
         "plugin:prettier/recommended",
         "plugin:react-hooks/recommended",
@@ -93,7 +93,7 @@ export default defineConfig([
     files: ["**/*.ts", "**/*.tsx"],
 
     rules: {
-      "no-console": "warn",
+      "no-console": "off",
       "react/prop-types": "off",
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
@@ -143,9 +143,10 @@ export default defineConfig([
       "import/order": "off",
       "react/self-closing-comp": "off",
       "prettier/prettier": "off",
+      "react/jsx-sort-props": "off",
 
       "react/jsx-sort-props": [
-        "warn",
+        "off",
         {
           callbacksLast: true,
           shorthandFirst: true,
