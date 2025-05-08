@@ -1,4 +1,5 @@
 "use client";
+import { useUser } from "@/src/context/user.provider";
 import { logOut } from "@/src/services/authService";
 import { Avatar } from "@heroui/avatar";
 import { Button } from "@heroui/button";
@@ -12,6 +13,12 @@ import Link from "next/link";
 import React from "react";
 
 const NavbarDropdown = () => {
+  const { setIsLoading } = useUser();
+
+  const handleLogout = () => {
+    logOut();
+    setIsLoading(true);
+  };
 
   return (
     <div>
@@ -40,7 +47,12 @@ const NavbarDropdown = () => {
           <DropdownItem as={Link} href="/profile/about" key="/profile/about">
             About
           </DropdownItem>
-          <DropdownItem onClick={() => logOut()} as={Button} color="danger" key="/logout">
+          <DropdownItem
+            onClick={() => handleLogout()}
+            as={Button}
+            color="danger"
+            key="/logout"
+          >
             Log Out
           </DropdownItem>
         </DropdownMenu>

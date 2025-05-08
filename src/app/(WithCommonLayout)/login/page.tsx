@@ -11,27 +11,33 @@ import { TLogin } from "@/src/types/auth.types";
 import Loading from "@/src/components/UI/Loading";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/src/context/user.provider";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
   const { mutate: loginUser, isPending, isSuccess } = useUserLogin();
+  const { setIsLoading } = useUser();
 
   const onSubmit = (data: FieldValues) => {
     const userData = {
       ...data,
     };
     loginUser(userData as TLogin);
+    setIsLoading(true);
   };
 
-  if (!isPending && isSuccess) {
-    if (redirect) {
-      router.push(redirect);
-    } else {
-      router.push('/')
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
     }
-  }
+  }, [isPending, isSuccess, redirect, router]);
 
   return (
     <>

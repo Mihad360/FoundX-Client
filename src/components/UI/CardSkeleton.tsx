@@ -8,13 +8,7 @@ const CardSkeleton = () => {
   return (
     <Card isFooterBlurred className="border-none" radius="lg">
       <Skeleton>
-        <Image
-          alt="Woman listing to music"
-          className="object-cover"
-          height={700}
-          src=""
-          width={700}
-        />
+        <div className="w-[700px] h-[700px]"></div>
       </Skeleton>
       <Skeleton>
         <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">

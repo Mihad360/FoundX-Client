@@ -6,8 +6,8 @@ const loading = () => {
   return (
     <Container>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {[...Array(9)].map(() => (
-         <CardSkeleton></CardSkeleton>
+        {[...Array(9)].map((_, index) => (
+          <CardSkeleton key={index}></CardSkeleton>
         ))}
       </div>
     </Container>

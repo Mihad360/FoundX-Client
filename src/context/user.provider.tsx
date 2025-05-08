@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   createContext,
   Dispatch,
@@ -21,7 +21,7 @@ const UserContext = createContext<TUserProvider | undefined>(undefined);
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<TUser | null>(null);
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(true);
 
   const handleUser = async () => {
     const user = await getUser();
@@ -31,7 +31,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     handleUser();
-  }, []);
+  }, [loading]);
 
   return (
     <UserContext.Provider value={{ user, setUser, loading, setIsLoading }}>
@@ -42,10 +42,10 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
 export const useUser = () => {
   const context = useContext(UserContext);
-  if(context === undefined){
-    throw new Error("Use user must be use in a provider context")
+  if (context === undefined || null) {
+    throw new Error("Use user must be use in a provider context");
   }
   return context;
 };
 
-export default UserProvider
+export default UserProvider;

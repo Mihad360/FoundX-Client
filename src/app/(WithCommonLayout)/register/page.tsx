@@ -2,6 +2,7 @@
 import FXForm from "@/src/components/form/FXForm";
 import FXInput from "@/src/components/form/FXInput";
 import Loading from "@/src/components/UI/Loading";
+import { useUser } from "@/src/context/user.provider";
 import { useUserRegistration } from "@/src/hooks/auth.hook";
 import { registerValidation } from "@/src/schemas/login.schema";
 import { TRegister } from "@/src/types/auth.types";
@@ -12,8 +13,8 @@ import React from "react";
 import { FieldValues } from "react-hook-form";
 
 const RegisterPage = () => {
-  const { mutate: register, data, error, isPending } = useUserRegistration();
-  // console.log(data, error);
+  const { mutate: register, isPending } = useUserRegistration();
+  const {setIsLoading} = useUser()
   const onSubmit = (data: FieldValues) => {
     const userData = {
       ...data,
@@ -21,8 +22,9 @@ const RegisterPage = () => {
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     };
     register(userData as TRegister);
+    setIsLoading(true)
   };
-  
+
   return (
     <div>
       {isPending && <Loading />}
