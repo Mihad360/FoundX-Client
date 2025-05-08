@@ -1,3 +1,4 @@
+"use client";
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -15,10 +16,12 @@ import clsx from "clsx";
 import { siteConfig } from "../../config/site";
 import { Logo } from "../icons";
 import { ThemeSwitch } from "./theme-switch";
-import { Avatar } from "@heroui/avatar";
 import NavbarDropdown from "./NavbarDropdown";
+import { useUser } from "@/src/context/user.provider";
 
 export const Navbar = () => {
+  const { user } = useUser();
+  console.log(user);
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -52,7 +55,13 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
-          <NavbarDropdown></NavbarDropdown>
+          {user ? (
+            <NavbarDropdown></NavbarDropdown>
+          ) : (
+            <Link href="/login" color="primary">
+              Login
+            </Link>
+          )}
         </NavbarItem>
       </NavbarContent>
 

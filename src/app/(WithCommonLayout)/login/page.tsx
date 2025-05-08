@@ -6,14 +6,36 @@ import { FieldValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidation } from "@/src/schemas/login.schema";
 import Link from "next/link";
+import { useUserLogin } from "@/src/hooks/auth.hook";
+import { TLogin } from "@/src/types/auth.types";
+import Loading from "@/src/components/UI/Loading";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+  const { mutate: loginUser, isPending, isSuccess } = useUserLogin();
+
+  const onSubmit = (data: FieldValues) => {
+    const userData = {
+      ...data,
+    };
+    loginUser(userData as TLogin);
   };
 
+  if (!isPending && isSuccess) {
+    if (redirect) {
+      router.push(redirect);
+    } else {
+      router.push('/')
+    }
+  }
+
   return (
-    <div>
+    <>
+      {isPending && <Loading />}
       <h1 className="text-center text-2xl pt-24">Login here</h1>
       <div className="w-96 mx-auto pt-6">
         <FXForm onSubmit={onSubmit} resolver={zodResolver(loginValidation)}>
@@ -37,7 +59,7 @@ const LoginPage = () => {
           Dont have an account? <Link href="/register">Register</Link>
         </p>
       </div>
-    </div>
+    </>
   );
 };
 

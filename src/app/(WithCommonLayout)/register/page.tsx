@@ -1,6 +1,7 @@
 "use client";
 import FXForm from "@/src/components/form/FXForm";
 import FXInput from "@/src/components/form/FXInput";
+import Loading from "@/src/components/UI/Loading";
 import { useUserRegistration } from "@/src/hooks/auth.hook";
 import { registerValidation } from "@/src/schemas/login.schema";
 import { TRegister } from "@/src/types/auth.types";
@@ -11,8 +12,8 @@ import React from "react";
 import { FieldValues } from "react-hook-form";
 
 const RegisterPage = () => {
-  const { mutate: register, data, error } = useUserRegistration();
-  console.log(data, error);
+  const { mutate: register, data, error, isPending } = useUserRegistration();
+  // console.log(data, error);
   const onSubmit = (data: FieldValues) => {
     const userData = {
       ...data,
@@ -21,9 +22,10 @@ const RegisterPage = () => {
     };
     register(userData as TRegister);
   };
-
+  
   return (
     <div>
+      {isPending && <Loading />}
       <h1 className="text-center text-2xl pt-24">Login here</h1>
       <div className="w-96 mx-auto pt-6">
         <FXForm onSubmit={onSubmit} resolver={zodResolver(registerValidation)}>

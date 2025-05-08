@@ -1,5 +1,7 @@
 "use client";
+import { logOut } from "@/src/services/authService";
 import { Avatar } from "@heroui/avatar";
+import { Button } from "@heroui/button";
 import {
   Dropdown,
   DropdownItem,
@@ -10,6 +12,7 @@ import Link from "next/link";
 import React from "react";
 
 const NavbarDropdown = () => {
+
   return (
     <div>
       <Dropdown>
@@ -36,6 +39,9 @@ const NavbarDropdown = () => {
           </DropdownItem>
           <DropdownItem as={Link} href="/profile/about" key="/profile/about">
             About
+          </DropdownItem>
+          <DropdownItem onClick={() => logOut()} as={Button} color="danger" key="/logout">
+            Log Out
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
