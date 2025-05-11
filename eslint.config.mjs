@@ -144,6 +144,7 @@ export default defineConfig([
       "react/self-closing-comp": "off",
       "prettier/prettier": "off",
       "react/jsx-sort-props": "off",
+      "react-hooks/rules-of-hooks": 'warn',
 
       "react/jsx-sort-props": [
         "off",

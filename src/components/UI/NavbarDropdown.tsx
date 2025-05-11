@@ -13,8 +13,8 @@ import Link from "next/link";
 import React from "react";
 
 const NavbarDropdown = () => {
-  const { setIsLoading } = useUser();
-
+  const { setIsLoading, user } = useUser();
+  console.log(user);
   const handleLogout = () => {
     logOut();
     setIsLoading(true);
@@ -24,7 +24,7 @@ const NavbarDropdown = () => {
     <div>
       <Dropdown>
         <DropdownTrigger className="cursor-pointer">
-          <Avatar name="Jane"></Avatar>
+          <Avatar src={user?.profilePhoto}></Avatar>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownItem as={Link} href="/profile" key="/profile">
