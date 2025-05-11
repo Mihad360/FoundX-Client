@@ -145,6 +145,7 @@ export default defineConfig([
       "prettier/prettier": "off",
       "react/jsx-sort-props": "off",
       "react-hooks/rules-of-hooks": 'warn',
+      "react/jsx-key": 'off',
 
       "react/jsx-sort-props": [
         "off",
