@@ -9,6 +9,8 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
+import FXDatePicker from "./FXDatePicker";
+import dayjs from "dayjs";
 
 const page = () => {
   const methods = useForm();
@@ -21,8 +23,9 @@ const page = () => {
   const onSubmit = (data: FieldValues) => {
     const postData = {
       ...data,
-      questions: data?.questions.map(item => item.value)
-    }
+      questions: data?.questions.map((item) => item.value),
+      dateFound: dayjs(data?.dateFound).format("MM-DD-YYYY"),
+    };
     console.log(postData);
   };
 
@@ -33,9 +36,16 @@ const page = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FXInput label="Questions" name="title"></FXInput>
+        <div className="flex items-center gap-5">
+          <FXInput label="Questions" name="title"></FXInput>
+          <FXInput label="Location" name="location"></FXInput>
+        </div>
+        <div className="flex items-center gap-5 pt-5">
+          <FXInput label="City" name="city"></FXInput>
+          <FXDatePicker label="Found Date" name="dateFound"></FXDatePicker>
+        </div>
         <Divider className="my-5"></Divider>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-5">
           <h1>Owner verification Questions</h1>
           <Button onClick={handleQuestions} className="">
             Append
@@ -57,5 +67,16 @@ const page = () => {
     </FormProvider>
   );
 };
+
+// {
+//   "title": "Wallet",
+//   "description": "A black leather wallet with a few cards inside.",
+//   "location": "Central Park",
+//   "city": "Dhaka",
+//   "dateFound": "2023-06-15T00:00:00.000Z",
+//   "category": "667ee6ad6635bacba3b633f3",
+//   "user": "6682899b5c4ebb0dadc7b3bf",
+//   "questions": ["What brand is the wallet?", "What cards are inside?"]
+// }
 
 export default page;
