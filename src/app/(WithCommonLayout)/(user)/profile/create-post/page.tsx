@@ -9,10 +9,26 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
-import FXDatePicker from "./FXDatePicker";
+import FXDatePicker from "../../../../../components/form/FXDatePicker";
 import dayjs from "dayjs";
+import FXSelect from "@/src/components/form/FXSelect";
+import { allDistict } from "@bangladeshi/bangladesh-address";
+import { useGetCategories } from "@/src/hooks/categories.hook";
+import { selectCategories } from "@/src/hooks/select";
+
+const cityOptions = allDistict()
+  .sort()
+  .map((dis: string) => ({
+    key: dis,
+    label: dis,
+  }));
 
 const page = () => {
+  const { data: categories, isLoading: categoryLoading } = useGetCategories();
+
+  const categoryOptions = selectCategories(categories?.data || []);
+  console.log(categoryOptions);
+
   const methods = useForm();
   const { control, handleSubmit } = methods;
   const { fields, append, remove } = useFieldArray({
@@ -37,12 +53,20 @@ const page = () => {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center gap-5">
-          <FXInput label="Questions" name="title"></FXInput>
+          <FXInput label="Title" name="title"></FXInput>
           <FXInput label="Location" name="location"></FXInput>
         </div>
         <div className="flex items-center gap-5 pt-5">
-          <FXInput label="City" name="city"></FXInput>
+          <FXSelect options={cityOptions} label="City" name="city"></FXSelect>
           <FXDatePicker label="Found Date" name="dateFound"></FXDatePicker>
+        </div>
+        <div className="flex items-center gap-5 pt-5">
+          <FXSelect
+            options={categoryOptions}
+            label="Category"
+            name="category"
+          ></FXSelect>
+          <FXSelect options={cityOptions} label="City" name="city"></FXSelect>
         </div>
         <Divider className="my-5"></Divider>
         <div className="flex items-center gap-5">
