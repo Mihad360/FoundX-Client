@@ -8,9 +8,9 @@ const ItemCard = ({ item }) => {
       <Image
         alt="Woman listing to music"
         className="object-cover"
-        height={700}
+        height={500}
         src={item?.images[0]}
-        width={700}
+        width={500}
       />
       <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
         <p className="text-tiny text-white/80">{item.title}</p>

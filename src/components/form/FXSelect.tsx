@@ -9,13 +9,14 @@ type TSelect = {
   }[];
   name: string;
   label: string;
+  disabled?: boolean;
 };
 
-const FXSelect = ({ options, name, label }: TSelect) => {
+const FXSelect = ({ options, name, label, disabled }: TSelect) => {
   const { register } = useFormContext();
 
   return (
-    <Select {...register(name)} label={label}>
+    <Select {...register(name)} label={label} isDisabled={disabled}>
       {options.map((option) => (
         <SelectItem key={option.key}>{option.label}</SelectItem>
       ))}

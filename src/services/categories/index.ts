@@ -1,3 +1,4 @@
+"use server";
 import { axiosUrl } from "@/src/libs/AxiosInstance";
 
 export const getCaegories = async () => {
