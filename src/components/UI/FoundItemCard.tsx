@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
 import { CalendarDays, MapPin, User } from "lucide-react";
-import Image from "next/image";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
 import ImageGallery from "./ImageGallery";
+import ClaimRequestModal from "../modals/ClaimRequestModal";
+import { useUser } from "@/src/context/user.provider";
+import AuthencationModal from "../modals/AuthencationModal";
 
 const FoundItemCard = ({ item }) => {
   const {
@@ -16,7 +18,11 @@ const FoundItemCard = ({ item }) => {
     dateFound,
     category,
     user,
+    questions,
+    _id,
   } = item;
+
+  const { user: loggedUser } = useUser();
 
   return (
     <Card className="max-w-md w-full rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -38,13 +44,20 @@ const FoundItemCard = ({ item }) => {
         </div>
         <div className="flex items-center gap-2">
           <CalendarDays className="w-4 h-4" />
-          <span>Found: {dateFound}</span>z
+          <span>Found: {dateFound.split("T")[0]}</span>
         </div>
         <div className="text-xs text-muted-foreground">
           Category: <span className="font-medium">{category?.name}</span>
         </div>
         <div className="flex gap-3 pt-4">
-          <Button className="flex-1">Claim Request</Button>
+          {user?.email !== loggedUser?.email ? (
+            <>
+              {loggedUser?.email && (
+                <ClaimRequestModal id={_id} questions={questions} />
+              )}
+              {!loggedUser?.email && <AuthencationModal />}
+            </>
+          ) : null}
           <Button variant="solid" className="flex-1">
             Share
           </Button>
