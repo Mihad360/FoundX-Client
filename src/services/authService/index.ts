@@ -44,3 +44,20 @@ export const getUser = async () => {
   }
   return decoded;
 };
+
+export const getNewAccessToken = async () => {
+  try {
+    const refreshToken = (await cookies()).get("refreshToken")?.value;
+    const { data } = await axiosUrl({
+      url: "/auth/refresh-token",
+      method: "POST",
+      withCredentials: true,
+      headers: {
+        cookies: `refreshToken=${refreshToken}`,
+      },
+    });
+    return data
+  } catch (error) {
+    throw new Error(error?.response?.data?.message);
+  }
+};
